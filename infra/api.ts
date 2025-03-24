@@ -6,17 +6,14 @@ export const api = new sst.aws.ApiGatewayV2("Api", {
 			handler: {
 				link: [table],
 			},
+			args: {
+				auth: { iam: true }
+			},
 		}
 	}
 });
 
-api.route("GET /", {
-	link: [table],
-	handler: "packages/functions/src/api.handler",
-});
-
 api.route("POST /notes", "packages/functions/src/create.main");
-
 api.route("GET /notes", "packages/functions/src/list.main");
 api.route("GET /notes/{id}", "packages/functions/src/get.main");
 api.route("PUT /notes/{id}", "packages/functions/src/update.main");
