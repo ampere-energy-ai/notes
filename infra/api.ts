@@ -1,6 +1,7 @@
 import { table, secret } from "./storage";
 
 export const api = new sst.aws.ApiGatewayV2("Api", {
+	cors: true,
 	transform: {
 		route: {
 			handler: {
